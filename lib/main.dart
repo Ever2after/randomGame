@@ -11,6 +11,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '랜덤 술게임',
       home: HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/game1' : (context)=>Game1(),
+      },
     );
   }
 }
@@ -52,12 +56,10 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2,
                   childAspectRatio: 1.618,
                   children: <Widget>[
-                    _gameSelect('images/game1.jpg', '클레오파트라', Game1()),
-                    _gameSelect('images/game1.jpg', '클레오파트라', Game1()),
-                    _gameSelect('images/game1.jpg', '클레오파트라', Game1()),
-                    _gameSelect('images/game1.jpg', '클레오파트라', Game1()),
-                    _gameSelect('images/game1.jpg', '클레오파트라', Game1()),
-                    _gameSelect('images/game1.jpg', '클레오파트라', Game1()),
+                    _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
+                    _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
+                    _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
+                    _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
                   ],
                 ),
               )
@@ -68,7 +70,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _gameSelect(String _imageSrc, String _gameName, Widget _gameScreen){
+  Widget _gameSelect(String _imageSrc, String _gameName, String _route){
     return FlatButton(
       padding: EdgeInsets.all(0),
       child: Container(
@@ -100,9 +102,7 @@ class _HomePageState extends State<HomePage> {
             alignment: Alignment.center,
           )),
       onPressed: () {
-        Navigator.push(context, MaterialPageRoute(
-            builder: (context)=> _gameScreen
-        ));
+        Navigator.pushNamed(context, _route);
       },
     );
   }

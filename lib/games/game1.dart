@@ -36,7 +36,7 @@ class _Game1State extends State<Game1> {
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.home),
           onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder : (context)=>HomePage()));
+            Navigator.pop(context);
           },
         ),
       ),
