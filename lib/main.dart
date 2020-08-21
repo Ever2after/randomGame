@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:random_game/games/game1.dart';
+import 'games/consonant_game.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/game1' : (context)=>Game1(),
+        ConsonantGame.id: (context) => ConsonantGame(),
       },
     );
   }
@@ -57,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                   childAspectRatio: 1.618,
                   children: <Widget>[
                     _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
-                    _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
+                    _gameSelect('images/game1.jpg', '클레오파트라', ConsonantGame.id),
                     _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
                     _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
                   ],
