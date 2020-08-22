@@ -71,7 +71,7 @@ class _ConsonantGameTimeSelectScreenState extends State<ConsonantGameTimeSelectS
             SizedBox(height: 20,),
             FlatButton(
               child: Text('확인'),
-              onPressed: _showDialog,
+              onPressed: _showRule,
 
             ),
           ],
@@ -98,7 +98,8 @@ class _ConsonantGameTimeSelectScreenState extends State<ConsonantGameTimeSelectS
     }
   }
 
-  _showDialog() {
+  //gameRule 보여줌
+  _showRule() {
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
@@ -123,4 +124,6 @@ class _ConsonantGameTimeSelectScreenState extends State<ConsonantGameTimeSelectS
           ],
         ));
   }
+
+
 }

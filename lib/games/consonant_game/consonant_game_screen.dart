@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 const List<String> consonants = [
@@ -18,6 +19,7 @@ class _ConsonantGameScreenState extends State<ConsonantGameScreen> {
   String randomWord2;
   int _counter;
   Timer _timer;
+  int penaltyNum; // 벌칙결정하는 랜덤숫자
   Random random = Random();
   final int minNum = 3; // randomTime 선택시 최소제한시간
   final int maxNum = 10; // randomTime 선택시 최대제한시간
@@ -70,13 +72,16 @@ class _ConsonantGameScreenState extends State<ConsonantGameScreen> {
               ? Text('')
               : Text('시간초과!', style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),),
           SizedBox(height: 10,),
+          (_counter > 0)
+          ?
           Text(
             '$_counter',
             style: TextStyle(
               fontSize: 35,
               fontWeight: FontWeight.bold,
             ),
-          ),
+          )
+          : Text(''),
           SizedBox(height: 15,),
           FlatButton(
             color: Colors.blue,
@@ -100,6 +105,11 @@ class _ConsonantGameScreenState extends State<ConsonantGameScreen> {
     return consonants[ranNum];
   }
 
+  int getRandomNumber(int num) {
+    int ranNum = random.nextInt(num);
+    return ranNum;
+  }
+
   void startTimer() {
     if (_timer != null) {
       _timer.cancel();
@@ -108,8 +118,12 @@ class _ConsonantGameScreenState extends State<ConsonantGameScreen> {
       setState(() {
         if (_counter > 0)
           _counter--;
-        else
+        else{
+          penaltyNum = getRandomNumber(101);
+          setPenalty(penaltyNum);
           _timer.cancel();
+        }
+
       });
     });
   }
@@ -121,5 +135,46 @@ class _ConsonantGameScreenState extends State<ConsonantGameScreen> {
     } else {
       _counter = widget.timeLimit;
     }
+  }
+
+  void setPenalty(int penaltyNum) {
+    if (penaltyNum<=10) {
+      _showPenalty('소주2잔ㅋㅋ', 'images/soju.png');
+    } else if (10<penaltyNum && penaltyNum<=20) {
+      _showPenalty('물1잔^^7 ', 'images/water.png');
+    } else if (20<penaltyNum && penaltyNum<=70) {
+      _showPenalty('소주1잔!', 'images/soju.png');
+    } else if (70<penaltyNum && penaltyNum<=85) {
+      _showPenalty('맥주 반컵!', 'images/beer.png');
+    } else {
+      _showPenalty('소맥1잔!', 'images/beer.png');
+    }
+  }
+
+  //벌칙 알림창
+  void _showPenalty(String penaltyText, String image) {
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (_) => AlertDialog(
+          title: Text(penaltyText, textAlign: TextAlign.center,),
+          content: Container(
+            height: 70,
+            width: 70,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(image),
+                fit: BoxFit.contain
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('확인'),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          ],
+        )
+    );
   }
 }
