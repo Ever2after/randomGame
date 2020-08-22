@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:random_game/games/game1.dart';
 import 'package:random_game/games/up&down.dart';
+import 'package:random_game/games/bottle_spinner.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/game1' : (context)=>Game1(),
         '/upDown' : (context)=>UpDown(),
+        '/bottleSpinner' : (context)=>BottleSpinner(),
       },
     );
   }
@@ -60,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     _gameSelect('images/game1.jpg', '클레오파트라', '/game1'), 
                     _gameSelect('images/game1.jpg', 'Up & Down', '/upDown'),
-                    _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
+                    _gameSelect('images/game1.jpg', '소주병 돌리기', '/bottleSpinner'),
                     _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
                   ],
                 ),
