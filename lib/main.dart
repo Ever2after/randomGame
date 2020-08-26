@@ -4,11 +4,21 @@ import 'package:random_game/games/consonant_game/consonant_game_time_select.dart
 import 'package:random_game/games/up&down.dart';
 import 'package:random_game/games/bottle_spinner.dart';
 
+import 'dart:math';
+
 void main() {
   runApp(MyApp());
 }
 
+final List<String> routes = [   //모든 라우팅 정보는 이곳에
+  '/game1',
+  ConsonantGameTimeSelectScreen.id,
+  '/upDown',
+  '/bottleSpinner'
+];
+
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,10 +26,10 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       initialRoute: '/',
       routes: {
-        '/game1' : (context)=>Game1(),
-        ConsonantGameTimeSelectScreen.id: (context) => ConsonantGameTimeSelectScreen(),
-        '/upDown' : (context)=>UpDown(),
-        '/bottleSpinner' : (context)=>BottleSpinner(),
+        routes[0] : (context) => Game1(),
+        routes[1] : (context) => ConsonantGameTimeSelectScreen(),
+        routes[2] : (context) => UpDown(),
+        routes[3] : (context) => BottleSpinner(),
       },
     );
   }
@@ -62,12 +72,16 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2,
                   childAspectRatio: 1.618,
                   children: <Widget>[
-                    _gameSelect('images/game1.jpg', '클레오파트라', '/game1'),
-                    _gameSelect('images/game1.jpg', '랜덤초성게임', ConsonantGameTimeSelectScreen.id),
-                    _gameSelect('images/game1.jpg', 'Up & Down', '/upDown'),
-                    _gameSelect('images/game1.jpg', '소주병 돌리기', '/bottleSpinner'),
+                    _gameSelect('images/game1.jpg', '클레오파트라', routes[0]),
+                    _gameSelect('images/game1.jpg', '랜덤초성게임', routes[1]),
+                    _gameSelect('images/game1.jpg', 'Up & Down', routes[2]),
+                    _gameSelect('images/game1.jpg', '소주병 돌리기', routes[3]),
                   ],
                 ),
+              ),
+              _randomSelect(),
+              SizedBox(
+                height: height*0.2,
               )
             ],
           ),
@@ -76,7 +90,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _gameSelect(String _imageSrc, String _gameName, String _route){
+  Widget _gameSelect(String _imageSrc, String _gameName, String _route){  //게임 선택 버튼 위젯
     return FlatButton(
       padding: EdgeInsets.all(0),
       child: Container(
@@ -109,6 +123,24 @@ class _HomePageState extends State<HomePage> {
           )),
       onPressed: () {
         Navigator.pushNamed(context, _route);
+      },
+    );
+  }
+
+  Widget _randomSelect(){  //게임 랜덤 선택 버튼 위젯
+    return RaisedButton(
+      color: Colors.greenAccent,
+      child: Container(
+        padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+        child: Text('게임 랜덤 스타트!', style: TextStyle(
+          color: Colors.teal,
+          fontSize: 18
+        ),),
+      ),
+      onPressed: (){
+        Navigator.pushNamed(
+          context, routes[Random().nextInt(routes.length)]
+        );
       },
     );
   }

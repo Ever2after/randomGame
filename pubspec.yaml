@@ -53,7 +53,8 @@ flutter:
      - images/water.png
      - images/alcohol_bottle.png
      - images/alcohol_bottle2.png
-     - images/alcohol_bottle3.jpg
+     - images/alcohol_bottle3.png
+     - images/alcohol_bottle4.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
