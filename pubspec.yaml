@@ -58,8 +58,9 @@ flutter:
      - images/alcohol_bottle3.png
      - images/alcohol_bottle4.png
      - images/jurumarble_chart.jpg
-     - images/simple_roullete.png
-     - images/red_arrow.png
+     - images/roullete.png
+     - images/roullete_pointer.png
+     - images/roullete_background.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -20,19 +20,28 @@ class _JuruMarbleRoulleteState extends State<JuruMarbleRoullete> {
     double height = widget.height;
     return Stack(
       children: <Widget> [ Opacity(
-        opacity: 0.5,
+        opacity: 0.7,
         child: Container(
-          color: Colors.purple,
+          color: Color.fromRGBO(104, 178, 228, 89),
         )),
         Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
             Text((widget.curPlayer + 1).toString() + '번 룰렛 돌리기', style: TextStyle(fontSize: 20, color: Colors.black),),
+            Padding(padding: EdgeInsets.all(10),),
+            Stack(
+              alignment: Alignment.center,
+              children: <Widget>[
+              Container(
+              child: Image.asset('images/roullete_background.png'),
+              width: height * 0.75,
+              
+            ),
             SpinningWheel(
-                        Image.asset('images/simple_roullete.png'),
-                        width: height * 0.7,
-                        height: height * 0.7,
+                        Image.asset('images/roullete.png'),
+                        width: height * 0.65,
+                        height: height * 0.65,
                         initialSpinAngle: _generateRandomAngle(),
                         spinResistance: 0.5,
                         canInteractWhileSpinning: false,
@@ -45,10 +54,11 @@ class _JuruMarbleRoulleteState extends State<JuruMarbleRoullete> {
                           sleep(Duration(milliseconds: 1500)); //끝났을때 좀 기다리기
                           Navigator.pop(context, k);
                         },
-                        secondaryImage: Image.asset('images/red_arrow.png'),
-                        secondaryImageHeight: height * 0.1,
-                        secondaryImageWidth: height * 0.1,
+                        secondaryImage: Image.asset('images/roullete_pointer.png'),
+                        secondaryImageHeight: height * 0.2,
+                        secondaryImageWidth: height * 0.2,
                       ),
+                      ],),
                       Container(),
           ]),
       ]);
