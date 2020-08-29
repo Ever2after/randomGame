@@ -64,6 +64,9 @@ flutter:
      - images/logo_4x.png
      - images/logo2_4x.png
      - images/logo3_4x.png
+     - images/roullete.png
+     - images/roullete_pointer.png
+     - images/roullete_background.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
