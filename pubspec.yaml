@@ -65,6 +65,7 @@ flutter:
      - images/roullete.png
      - images/roullete_pointer.png
      - images/roullete_background.png
+     - images/mini_soju.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
