@@ -28,6 +28,7 @@ class _JuruMarbleState extends State<JuruMarble> {
   int _playerNum = 0; //플레이어수(2~6)
   int _curPlayer = 0; //현재 움직이는 플레이어
   Game _game = Game();
+  double width, height;
 
   @override
   void initState() {
@@ -48,11 +49,11 @@ class _JuruMarbleState extends State<JuruMarble> {
             _playerNum = value;
             _game.setPlayerNum(_playerNum);
             for (int k = 0; k < _playerNum; k++) {
-              posx[k] = _game.getPlayerPosX(683, 387, k);
-              posy[k] = _game.getPlayerPosY(683, 387, k); //수정해야함
+              posx[k] = _game.getPlayerPosX(width, height, k);
+              posy[k] = _game.getPlayerPosY(width, height, k); //수정해야함
             }
           });
-          _moveToRoulletePage(683, 387); //수정...
+          _moveToRoulletePage(width, height); //수정...
         }
       });
     });
@@ -68,14 +69,13 @@ class _JuruMarbleState extends State<JuruMarble> {
 
     return SafeArea(child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      final double height = constraints.maxHeight;
-      final double width = constraints.maxWidth; //SafeArea의 width, height
+      height = constraints.maxHeight;
+      width = constraints.maxWidth; //SafeArea의 width, height
       return Scaffold(
           //child: Scaffold(
           body: Stack(
         children: <Widget>[
           Container(
-            //height: height,
             decoration: BoxDecoration(
                 image: DecorationImage(
               image: AssetImage('images/jurumarble_chart.jpg'), //주루마블판이미지
@@ -124,9 +124,7 @@ class _JuruMarbleState extends State<JuruMarble> {
               height: height,
             )));
     setState(() {
-      //_testreturn = roulleteResult;
       _move(width, height, roulleteResult);
-      //_move(5);
     });
   }
 
