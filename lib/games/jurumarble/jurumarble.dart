@@ -23,7 +23,7 @@ class JuruMarble extends StatefulWidget {
 
 class _JuruMarbleState extends State<JuruMarble> {
   //플레이어 x,y좌표
-  List<double> posx = List(6); 
+  List<double> posx = List(6);
   List<double> posy = List(6);
   int _playerNum = 0; //플레이어수(2~6)
   int _curPlayer = 0; //현재 움직이는 플레이어
@@ -35,6 +35,7 @@ class _JuruMarbleState extends State<JuruMarble> {
     super.initState(); //플레이어 수 받기
     Timer.run(() {
       showDialog<int>(
+          barrierDismissible: false,
           context: context,
           builder: (BuildContext context) {
             return NumberPickerDialog.integer(
@@ -55,9 +56,23 @@ class _JuruMarbleState extends State<JuruMarble> {
           });
           _moveToRoulletePage(width, height); //수정...
         }
+        else {
+          Navigator.of(context).pop();
+        }
       });
     });
   } //initState
+
+  @override
+  dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +80,6 @@ class _JuruMarbleState extends State<JuruMarble> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]); //화면을 landscape로 고정
-
 
     return SafeArea(child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
@@ -115,7 +129,8 @@ class _JuruMarbleState extends State<JuruMarble> {
     return ret;
   }
 
-  void _moveToRoulletePage(double width, double height) async { //룰렛 push할때 await쓰기위해 async함수로
+  void _moveToRoulletePage(double width, double height) async {
+    //룰렛 push할때 await쓰기위해 async함수로
     final roulleteResult = await Navigator.of(context).push(PageRouteBuilder(
         opaque: false,
         pageBuilder: (context, __, ___) => JuruMarbleRoullete(
@@ -129,27 +144,32 @@ class _JuruMarbleState extends State<JuruMarble> {
   }
 
   void _move(double width, double height, int k) {
-    Future.delayed(Duration(milliseconds: 600)).then((_) async { //card push할때 await 쓰기위해 async함수로
-      if (_game.endGame(_curPlayer)) { //현재 움직이는 플레이어가 마지막칸에 있는데 한칸 더가려고 할때임(게임종료)
-        await Navigator.of(context).push(PageRouteBuilder( //여기서 pop두번해서 겜 종료댐
+    Future.delayed(Duration(milliseconds: 600)).then((_) async {
+      //card push할때 await 쓰기위해 async함수로
+      if (_game.endGame(_curPlayer)) {
+        //현재 움직이는 플레이어가 마지막칸에 있는데 한칸 더가려고 할때임(게임종료)
+        await Navigator.of(context).push(PageRouteBuilder(
+            //여기서 pop두번해서 겜 종료댐
             opaque: false,
             pageBuilder: (context, __, ___) => JuruMarbleCard(
                   content: (_curPlayer + 1).toString() + "우승!",
                   endgame: true,
                 )));
-        return ;  
+        return;
       }
-      
+
       setState(() {
         _game.movePlayer(_curPlayer);
-        for (int k = 0; k < _playerNum; k++) { //원래있던 말들도 자리비켜줘야되니까 걍 다 for문돌림
+        for (int k = 0; k < _playerNum; k++) {
+          //원래있던 말들도 자리비켜줘야되니까 걍 다 for문돌림
           posx[k] = _game.getPlayerPosX(width, height, k);
           posy[k] = _game.getPlayerPosY(width, height, k);
         }
       });
       if (k > 1)
         _move(width, height, k - 1); //재귀함수로 한칸씩 움직임
-      else { //다 움직였을때 : 다음플레이어로 바꾸고 벌칙내용 알려주기
+      else {
+        //다 움직였을때 : 다음플레이어로 바꾸고 벌칙내용 알려주기
         _curPlayer = _curPlayer < _playerNum - 1 ? _curPlayer + 1 : 0;
         await Navigator.of(context).push(PageRouteBuilder(
             opaque: false,
