@@ -107,7 +107,7 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
           ),
           Positioned(
             width: width,
-            top : height*0.04,
+            top: height * 0.04,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,

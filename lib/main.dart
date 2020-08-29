@@ -6,6 +6,7 @@ import 'package:random_game/games/bottle_spinner.dart';
 import 'package:random_game/games/jurumarble/jurumarble.dart';
 
 import 'dart:math';
+import 'package:bordered_text/bordered_text.dart';
 
 void main() {
   runApp(MyApp());
@@ -75,11 +76,11 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2,
                   childAspectRatio: 1.618,
                   children: <Widget>[
-                    _gameSelect('images/game1.jpg', '클레오파트라', routes[0]),
-                    _gameSelect('images/game1.jpg', '랜덤초성게임', routes[1]),
-                    _gameSelect('images/game1.jpg', 'Up & Down', routes[2]),
-                    _gameSelect('images/game1.jpg', '소주병 돌리기', routes[3]),
-                    _gameSelect('images/game1.jpg', '주루마블', routes[4]),
+                    _gameSelect('images/logo3_4x.png', '클레오파트라', routes[0]),
+                    _gameSelect('images/logo3_4x.png', '랜덤초성게임', routes[1]),
+                    _gameSelect('images/logo3_4x.png', 'Up & Down', routes[2]),
+                    _gameSelect('images/logo3_4x.png', '소주병 돌리기', routes[3]),
+                    _gameSelect('images/logo3_4x.png', '주루마블', routes[4]),
                   ],
                 ),
               ),
@@ -100,6 +101,7 @@ class _HomePageState extends State<HomePage> {
       child: Container(
           padding: EdgeInsets.all(0),
           decoration: BoxDecoration(
+            /*
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
@@ -107,21 +109,26 @@ class _HomePageState extends State<HomePage> {
                 blurRadius: 7,
                 offset: Offset(0, 3),
               )
-            ],
+            ],*/
             image: DecorationImage(
                 image: AssetImage(_imageSrc),
-                fit: BoxFit.cover,
-                colorFilter: ColorFilter.mode(
+                fit: BoxFit.fitHeight,
+                /*colorFilter: ColorFilter.mode(
                     Colors.black.withOpacity(0.5),
-                    BlendMode.srcOver)),
+                    BlendMode.srcOver)*/),
           ),
           child: Container(
             width: double.infinity,
             height: double.infinity,
-            child: Text(
-              _gameName,
-              style:
-              TextStyle(fontSize: 20, color: Colors.white),
+            child: BorderedText(
+              strokeWidth: 5.0,
+              strokeColor: Colors.white,
+              child: Text(
+                _gameName,
+                style:
+                TextStyle(fontSize: 24, color: Colors.black, fontWeight: FontWeight.w900
+                ,decorationColor : Colors.white,decoration : TextDecoration.none),
+              ),
             ),
             alignment: Alignment.center,
           )),

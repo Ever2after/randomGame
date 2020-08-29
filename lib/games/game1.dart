@@ -94,7 +94,7 @@ class _Game1State extends State<Game1> {
                     width: 200,
                     child: Text(
                       _isRecording ? '측정 종료' : '측정 시작!',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20,),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -109,7 +109,7 @@ class _Game1State extends State<Game1> {
                     width: 200,
                     child: Text(
                       '게임 초기화',
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20, color: Colors.white,),
                       textAlign: TextAlign.center,
                     ),
                   ),
