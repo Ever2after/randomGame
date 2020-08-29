@@ -65,7 +65,6 @@ class _JuruMarbleState extends State<JuruMarble> {
       DeviceOrientation.landscapeRight,
     ]); //화면을 landscape로 고정
 
-
     return SafeArea(child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
       final double height = constraints.maxHeight;
