@@ -3,6 +3,7 @@ import 'package:random_game/games/game1.dart';
 import 'package:random_game/games/consonant_game/consonant_game_time_select.dart';
 import 'package:random_game/games/up&down.dart';
 import 'package:random_game/games/bottle_spinner.dart';
+import 'package:random_game/games/jurumarble/jurumarble.dart';
 
 import 'dart:math';
 
@@ -14,7 +15,8 @@ final List<String> routes = [   //모든 라우팅 정보는 이곳에
   '/game1',
   ConsonantGameTimeSelectScreen.id,
   '/upDown',
-  '/bottleSpinner'
+  '/bottleSpinner',
+  JuruMarble.id
 ];
 
 class MyApp extends StatelessWidget {
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
         routes[1] : (context) => ConsonantGameTimeSelectScreen(),
         routes[2] : (context) => UpDown(),
         routes[3] : (context) => BottleSpinner(),
+        routes[4] : (context) => JuruMarble(),
       },
     );
   }
@@ -76,12 +79,13 @@ class _HomePageState extends State<HomePage> {
                     _gameSelect('images/game1.jpg', '랜덤초성게임', routes[1]),
                     _gameSelect('images/game1.jpg', 'Up & Down', routes[2]),
                     _gameSelect('images/game1.jpg', '소주병 돌리기', routes[3]),
+                    _gameSelect('images/game1.jpg', '주루마블', routes[4]),
                   ],
                 ),
               ),
               _randomSelect(),
               SizedBox(
-                height: height*0.2,
+                height: height*0.1, //주루마블 안보여서 0.2>0.1로 수정햇어요
               )
             ],
           ),
