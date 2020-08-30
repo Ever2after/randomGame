@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:random_game/games/game1.dart';
 import 'package:random_game/games/consonant_game/consonant_game_time_select.dart';
+import 'package:random_game/games/random_target_game.dart';
 import 'package:random_game/games/up&down.dart';
 import 'package:random_game/games/bottle_spinner.dart';
 import 'package:random_game/games/jurumarble/jurumarble.dart';
@@ -17,7 +18,8 @@ final List<String> routes = [   //모든 라우팅 정보는 이곳에
   ConsonantGameTimeSelectScreen.id,
   '/upDown',
   '/bottleSpinner',
-  JuruMarble.id
+  JuruMarble.id,
+  RandomTargetGame.id,
 ];
 
 class MyApp extends StatelessWidget {
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
         routes[2] : (context) => UpDown(),
         routes[3] : (context) => BottleSpinner(),
         routes[4] : (context) => JuruMarble(),
+        routes[5] : (context) => RandomTargetGame(),
       },
     );
   }
@@ -81,6 +84,7 @@ class _HomePageState extends State<HomePage> {
                     _gameSelect('images/logo3_4x.png', 'Up & Down', routes[2]),
                     _gameSelect('images/logo3_4x.png', '소주병 돌리기', routes[3]),
                     _gameSelect('images/logo3_4x.png', '주루마블', routes[4]),
+                    _gameSelect('images/logo3_4x.png', '랜덤터치', routes[5]),
                   ],
                 ),
               ),
