@@ -69,57 +69,60 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
     double alpha = -w0 / _duration;
 
     if (_controller.value == 1) _controller.stop();
-    return GestureDetector(
-      onHorizontalDragStart: _onDragStartHandler,
-      onVerticalDragStart: _onDragStartHandler,
-      behavior: HitTestBehavior.translucent,
-      onHorizontalDragUpdate: _onDragUpdateHandler,
-      onVerticalDragUpdate: _onDragUpdateHandler,
-      onHorizontalDragEnd: _onDragEnd,
-      onVerticalDragEnd: _onDragEnd,
-      child: Center(
-        child: Stack(children: <Widget>[
-          Container(
-            height: height,
-            width: width,
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: AnimatedBuilder(
-              animation: _controller,
-              child: Container(
-                child: Image.asset(imgsrc),
+    return Container(
+      color: Color.fromRGBO(235, 215, 138, 0.7),
+      child: GestureDetector(
+        onHorizontalDragStart: _onDragStartHandler,
+        onVerticalDragStart: _onDragStartHandler,
+        behavior: HitTestBehavior.translucent,
+        onHorizontalDragUpdate: _onDragUpdateHandler,
+        onVerticalDragUpdate: _onDragUpdateHandler,
+        onHorizontalDragEnd: _onDragEnd,
+        onVerticalDragEnd: _onDragEnd,
+        child: Center(
+          child: Stack(children: <Widget>[
+            Container(
+              height: height,
+              width: width,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: AnimatedBuilder(
+                animation: _controller,
+                child: Container(
+                  child: Image.asset(imgsrc),
+                ),
+                builder: (BuildContext context, Widget _widget) {
+                  return new Transform.rotate(
+                    angle: isDragging
+                        ? -angle
+                        : -angle +
+                            alpha *
+                                _duration *
+                                _duration *
+                                _controller.value *
+                                (1 - 0.5 * _controller.value),
+                    child: _widget,
+                  );
+                },
               ),
-              builder: (BuildContext context, Widget _widget) {
-                return new Transform.rotate(
-                  angle: isDragging
-                      ? -angle
-                      : -angle +
-                          alpha *
-                              _duration *
-                              _duration *
-                              _controller.value *
-                              (1 - 0.5 * _controller.value),
-                  child: _widget,
-                );
-              },
             ),
-          ),
-          Positioned(
-            width: width,
-            top: height * 0.04,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                _bottleSelector('images/alcohol_bottle.png'),
-                _bottleSelector('images/alcohol_bottle2.png'),
-                _bottleSelector('images/alcohol_bottle3.png'),
-                _bottleSelector('images/alcohol_bottle4.png'),
-              ],
-            ),
-          )
-        ]),
+            Positioned(
+              width: width,
+              top: height * 0.04,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  _bottleSelector('images/alcohol_bottle.png'),
+                  _bottleSelector('images/alcohol_bottle2.png'),
+                  _bottleSelector('images/alcohol_bottle3.png'),
+                  _bottleSelector('images/alcohol_bottle4.png'),
+                ],
+              ),
+            )
+          ]),
+        ),
       ),
     );
   }

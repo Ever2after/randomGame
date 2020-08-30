@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:random_game/main.dart';
 import 'package:noise_meter/noise_meter.dart';
 import 'dart:async';
-import 'dart:math';
 
 class Game1 extends StatefulWidget {
   @override
@@ -27,12 +25,14 @@ class _Game1State extends State<Game1> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return MaterialApp(
       home: Scaffold(
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: getContent())),
+            children: getContent(width, height))),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.home),
           onPressed: (){
@@ -43,9 +43,12 @@ class _Game1State extends State<Game1> {
     );
   }
 
-  List<Widget> getContent() => <Widget>[
+  List<Widget> getContent(width, height) => <Widget>[
         Container(
-            margin: EdgeInsets.fromLTRB(25, 100, 25, 100),
+            color : Color.fromRGBO(235, 215, 138, 0.7),
+            width : width,
+            height : height,
+            padding : EdgeInsets.only(top : height*0.2),
             child: Column(children: [
               Container(
                 child: Text(
@@ -55,46 +58,47 @@ class _Game1State extends State<Game1> {
                             ? '측정 중...'
                             : (_isPassed ? '통과! 자 다음 사람~!' : '실패! 일단 마시고 말해~!'),
                   style: TextStyle(
-                    fontSize : 24,
-                    color: !_gameStarted ? Colors.blueAccent
-                     : (_isPassed ? Colors.green : Colors.deepOrangeAccent),
+                    fontWeight : FontWeight.bold,
+                    fontSize : 28,
+                    color: !_gameStarted ? Colors.black
+                     : (_isPassed ? Color.fromRGBO(77, 158, 79,1) : Colors.deepOrangeAccent),
                   ),
                   textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: height*0.03,
               ),
               Container(
                 child: Text(
                     _isRecording
                         ? "Current Decibel : $_decibel dB\nMax Decibel: $_maxDecibel dB"
                         : "최고기록 : $_maxDecibel dB",
-                    style: TextStyle(fontSize: 25, color: Colors.blue),
+                    style: TextStyle(fontWeight : FontWeight.bold, fontSize: 25, color: Color.fromRGBO(104, 178, 228,1)),
                     textAlign: TextAlign.center,
                 ),
                 margin: EdgeInsets.only(top: 20),
                 height: 100,
               ),
               SizedBox(
-                height: 50,
+                height: height*0.03,
               ),
               Container(
-                color: Colors.blueAccent,
+                color: Color.fromRGBO(104, 178, 228,1),
                 width: this._decibel * 2,
                 height: 30,
               ),
               SizedBox(
-                height: 100,
+                height: height*0.1,
               ),
               RaisedButton(
-                  color: _isRecording ? Colors.redAccent : Colors.greenAccent,
+                  color: _isRecording ? Colors.redAccent :  Color.fromRGBO(77, 158, 79,1),
                   padding: EdgeInsets.only(top : 10, bottom : 10),
                   child: Container(
                     width: 200,
                     child: Text(
                       _isRecording ? '측정 종료' : '측정 시작!',
-                      style: TextStyle(fontSize: 20,),
+                      style: TextStyle(fontSize: 20,color : Colors.white),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -103,7 +107,7 @@ class _Game1State extends State<Game1> {
                 height: 10,
               ),
               RaisedButton(
-                  color: Colors.blueAccent,
+                  color: Color.fromRGBO(104, 178, 228,1),
                   padding: EdgeInsets.only(top : 10, bottom : 10),
                   child: Container(
                     width: 200,

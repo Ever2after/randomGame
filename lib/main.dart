@@ -22,6 +22,15 @@ final List<String> routes = [   //모든 라우팅 정보는 이곳에
   RandomTargetGame.id,
 ];
 
+final List<List<String>> gameInfo = [  //게임 정보 [게임 로고, 이름, 설명, 라우팅 정보]
+  ['images/logo.png', '클레오파트라', '목청이 클수록 유리한 게임', routes[0]],
+  ['images/logo.png', '랜덤초성게임', '', routes[1]],
+  ['images/logo.png', 'Up & Down', '랜덤 숫자 맞추기', routes[2]],
+  ['images/logo.png', '소주병 돌리기', '누군가 한 명 고르고 싶을 때', routes[3]],
+  ['images/logo.png', '주루마블', '', routes[4]],
+  ['images/logo.png', '랜덤터치', '', routes[5]],
+];
+
 class MyApp extends StatelessWidget {
 
   @override
@@ -31,6 +40,7 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       initialRoute: '/',
       routes: {
+        '/' : (context) => WelcomePage(),
         routes[0] : (context) => Game1(),
         routes[1] : (context) => ConsonantGameTimeSelectScreen(),
         routes[2] : (context) => UpDown(),
@@ -55,43 +65,77 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         body: Container(
+          color: Color.fromRGBO(235, 215, 138, 1),
           child: Column(
             children: <Widget>[
               Container(
-                child: Text(
-                  '랜덤 술게임~~',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
+                child: BorderedText(
+                  strokeWidth: 12,
+                  strokeColor: Color.fromRGBO(104, 178, 228,1),
+                  child: Text(
+                    '더 게임 오브 알코올',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                    ),
                   ),
                 ),
-                color: Colors.lightBlue,
                 width: width,
                 height: height * 0.2,
                 alignment: Alignment.center,
               ),
-              Expanded(
-                child: GridView.count(
-                  primary: false,
-                  padding: const EdgeInsets.all(25),
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.618,
+              Container(
+                margin: EdgeInsets.fromLTRB(30,0,30,30),
+                padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                height : height*0.55,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                ),
+                child: Column(
                   children: <Widget>[
-                    _gameSelect('images/logo3_4x.png', '클레오파트라', routes[0]),
-                    _gameSelect('images/logo3_4x.png', '랜덤초성게임', routes[1]),
-                    _gameSelect('images/logo3_4x.png', 'Up & Down', routes[2]),
-                    _gameSelect('images/logo3_4x.png', '소주병 돌리기', routes[3]),
-                    _gameSelect('images/logo3_4x.png', '주루마블', routes[4]),
-                    _gameSelect('images/logo3_4x.png', '랜덤터치', routes[5]),
+                    Container(
+                      alignment: Alignment.center,
+                      height : 35,
+                      child: Text('게임 목록', style: TextStyle(
+                        fontSize: 18, color  : Colors.white,
+                      ),),
+                      decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.only(
+                            topLeft : Radius.circular(20),
+                            topRight : Radius.circular(20),
+                          )
+                      ),
+                    ),
+                    Expanded(
+                      child: ListView(
+                        physics: BouncingScrollPhysics(),
+                        children: <Widget>[
+                          _gameTile(gameInfo[0]),
+                          _gameTile(gameInfo[1]),
+                          _gameTile(gameInfo[2]),
+                          _gameTile(gameInfo[3]),
+                          _gameTile(gameInfo[4]),
+                          _gameTile(gameInfo[5]),
+                        ],
+                      ),
+                    )
                   ],
+                )
+              ),
+              Container(
+                width : width,
+                color : Color.fromRGBO(235, 215, 138, 1),
+                child: Column(
+                  children: <Widget>[
+                    _randomSelect(),
+                    SizedBox(
+                      height: height*0.04, //주루마블 안보여서 0.2>0.1로 수정햇어요
+                    )
+                  ]
                 ),
               ),
-              _randomSelect(),
-              SizedBox(
-                height: height*0.1, //주루마블 안보여서 0.2>0.1로 수정햇어요
-              )
             ],
           ),
         ),
@@ -99,56 +143,30 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget _gameSelect(String _imageSrc, String _gameName, String _route){  //게임 선택 버튼 위젯
-    return FlatButton(
-      padding: EdgeInsets.all(0),
-      child: Container(
-          padding: EdgeInsets.all(0),
-          decoration: BoxDecoration(
-            /*
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3),
-              )
-            ],*/
-            image: DecorationImage(
-                image: AssetImage(_imageSrc),
-                fit: BoxFit.fitHeight,
-                /*colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.5),
-                    BlendMode.srcOver)*/),
-          ),
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            child: BorderedText(
-              strokeWidth: 5.0,
-              strokeColor: Colors.white,
-              child: Text(
-                _gameName,
-                style:
-                TextStyle(fontSize: 24, color: Colors.black, fontWeight: FontWeight.w900
-                ,decorationColor : Colors.white,decoration : TextDecoration.none),
-              ),
-            ),
-            alignment: Alignment.center,
-          )),
-      onPressed: () {
-        Navigator.pushNamed(context, _route);
+  Widget _gameTile(List<String> _gameInfo){
+    return ListTile(
+      onTap: (){
+        Navigator.pushNamed(context, _gameInfo[3]);
       },
+      title: Text(_gameInfo[1]),
+      subtitle: Text(_gameInfo[2]),
+      leading: CircleAvatar(
+        backgroundColor: Colors.white,
+        backgroundImage : AssetImage(
+          _gameInfo[0],
+        )
+      ),
+      trailing: Icon(Icons.play_arrow),
     );
   }
 
   Widget _randomSelect(){  //게임 랜덤 선택 버튼 위젯
     return RaisedButton(
-      color: Colors.greenAccent,
+      color: Color.fromRGBO(77, 158, 79,1),
       child: Container(
         padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
         child: Text('게임 랜덤 스타트!', style: TextStyle(
-          color: Colors.teal,
+          color: Colors.white,
           fontSize: 18
         ),),
       ),
