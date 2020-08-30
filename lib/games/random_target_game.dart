@@ -77,7 +77,6 @@ class _RandomTargetGameState extends State<RandomTargetGame> {
 
   double getRandomNumber() {
     double ranNum = (random.nextInt(100) + 1) * 0.01;
-    print('ranNum: $ranNum');
     return ranNum;
   }
 
@@ -104,6 +103,7 @@ class _RandomTargetGameState extends State<RandomTargetGame> {
   void _nextGame() {
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (_) => AlertDialog(
           title: Text('$clickCount번 성공하셨습니다!', textAlign: TextAlign.center,),
           content: Text('다음 준비가 다됬으면 확인 버튼을 눌러주세요.'),
