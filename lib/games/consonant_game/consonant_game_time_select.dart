@@ -1,5 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'consonant_game_screen.dart';
+
+const Color textColor = Color.fromRGBO(80, 158, 77, 1);
+const Color backgroundColor = Color.fromRGBO(235, 215, 138, 1);
+const Color textColor2 = Color.fromRGBO(104, 178, 228, 1);
 
 enum TimeEnum { three, five, seven, randomTime }
 
@@ -17,6 +22,7 @@ class _ConsonantGameTimeSelectScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -25,7 +31,8 @@ class _ConsonantGameTimeSelectScreenState
             ),
             Text(
               '제한시간을 선택하세요',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 24,),
             ),
             SizedBox(
               height: 20,
@@ -39,10 +46,10 @@ class _ConsonantGameTimeSelectScreenState
             ),
             FlatButton(
               child: Text(
-                  '확인',
-                style: TextStyle(fontSize: 15, color: Colors.white70),
+                '확인',
+                style: TextStyle(fontSize: 16, color: Colors.white70),
               ),
-              color: Colors.green,
+              color: textColor2,
               onPressed: _showRule,
             ),
           ],
@@ -53,7 +60,10 @@ class _ConsonantGameTimeSelectScreenState
 
   Widget selectionTile(String time, TimeEnum val) {
     return ListTile(
-      title: Text(time),
+      title: Text(
+        time,
+
+      ),
       leading: Radio(
           activeColor: Colors.green,
           value: val,
@@ -89,17 +99,20 @@ class _ConsonantGameTimeSelectScreenState
     showDialog(
         context: context,
         builder: (_) => AlertDialog(
+          backgroundColor: backgroundColor,
               title: Text('게임방법'),
-              content: Text('제한시간안에 초성에 맞는 단어를 말하고 다음버튼을 누른후에 다음사람에게 넘겨주세요'),
+              content: Text(
+                '제한시간안에 초성에 맞는 단어를 말하고 다음버튼을 누른후에 다음사람에게 넘겨주세요',
+              ),
               actions: <Widget>[
                 FlatButton(
-                  child: Text('취소'),
+                  child: Text('취소', style: TextStyle(color: Colors.black),),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 ),
                 FlatButton(
-                  child: Text('확인'),
+                  child: Text('확인', style: TextStyle(color: Colors.black),),
                   onPressed: () {
                     Navigator.of(context).pop();
                     Navigator.push(
