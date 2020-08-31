@@ -2,6 +2,10 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+const Color textColor = Color.fromRGBO(80, 158, 77, 1);
+const Color backgroundColor = Color.fromRGBO(235, 215, 138, 1);
+//const Color textColor2 = Color.fromRGBO(104, 178, 228, 1);
+
 
 class RandomTargetGame extends StatefulWidget {
   static const String id = 'random_target_game';
@@ -27,11 +31,18 @@ class _RandomTargetGameState extends State<RandomTargetGame> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
+
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: backgroundColor,
         body: Stack(
           children: <Widget>[
             Positioned(
@@ -40,6 +51,7 @@ class _RandomTargetGameState extends State<RandomTargetGame> {
               child: Text(
                 '6초동안 최대한 많은 소주잔을 터치하세요!',
                 style: TextStyle(
+                  color: textColor,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
 
@@ -105,11 +117,16 @@ class _RandomTargetGameState extends State<RandomTargetGame> {
         context: context,
         barrierDismissible: false,
         builder: (_) => AlertDialog(
-          title: Text('$clickCount번 성공하셨습니다!', textAlign: TextAlign.center,),
-          content: Text('다음 준비가 다됬으면 확인 버튼을 눌러주세요.'),
+          backgroundColor: backgroundColor,
+          title: Text(
+            '$clickCount번 성공하셨습니다!',
+            style: TextStyle(fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          content: Text('다음 준비가 다됬으면 확인 버튼을 눌러주세요.',),
           actions: <Widget>[
             FlatButton(
-              child: Text('확인'),
+              child: Text('확인', style: TextStyle(color: Colors.black),),
               onPressed: () {
                 Navigator.of(context).pop();
                 setState(() {
