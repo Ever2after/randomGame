@@ -22,6 +22,10 @@ class Game {
     }
   }
 
+  int getPlayerPos(int player)
+  {
+    return playerPos[player];
+  }
 
   double getPosX(double defaultPosX, int num, int idx, double len)
   {

@@ -15,10 +15,13 @@ class JuruMarbleRoullete extends StatefulWidget {
 class _JuruMarbleRoulleteState extends State<JuruMarbleRoullete> {
   final StreamController _dividerController = StreamController<int>();
   bool _isEnd = true; //야매로... 이거 수정할수 있을까
+  int _count = 0;
   @override
   Widget build(BuildContext context) {
     double height = widget.height;
-    return Stack(
+    return WillPopScope(
+      onWillPop: (){return Future(() => false);},
+      child: Stack(
       children: <Widget> [ Opacity(
         opacity: 0.7,
         child: Container(
@@ -28,7 +31,7 @@ class _JuruMarbleRoulleteState extends State<JuruMarbleRoullete> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-            Text((widget.curPlayer + 1).toString() + '번 룰렛 돌리기', style: TextStyle(fontSize: 20, color: Colors.black),),
+            Text((widget.curPlayer + 1).toString() + '번 룰렛 돌리기', style: TextStyle(fontSize: 20, color: Colors.black, fontFamily: 'Recipekorea'),),
             Padding(padding: EdgeInsets.all(10),),
             Stack(
               alignment: Alignment.center,
@@ -46,11 +49,16 @@ class _JuruMarbleRoulleteState extends State<JuruMarbleRoullete> {
                         spinResistance: 0.5,
                         canInteractWhileSpinning: false,
                         dividers: 8,
-                        onUpdate: _dividerController.add,
+                        onUpdate: (int k) {
+                          _count++;
+                        },
                         onEnd: (int k) {
                           _isEnd = !_isEnd;
                           _dividerController.add(k);
-                          if (!_isEnd) return;
+                          if (_count < 4) {
+                            _count = 0;
+                            return;
+                          }
                           sleep(Duration(milliseconds: 1500)); //끝났을때 좀 기다리기
                           Navigator.pop(context, k);
                         },
@@ -61,7 +69,7 @@ class _JuruMarbleRoulleteState extends State<JuruMarbleRoullete> {
                       ],),
                       Container(),
           ]),
-      ]);
+      ]));
   }
 
   double _generateRandomAngle() => Random().nextDouble() * pi * 2;
