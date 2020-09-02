@@ -48,6 +48,7 @@ class _UpDownState extends State<UpDown> {
                 fontSize: 28,
                 fontWeight : FontWeight.bold,
                 color : Colors.black,
+                  fontFamily: 'Recipekorea'
               ),
             ),
             padding: EdgeInsets.fromLTRB(0, 200, 0, 100),
@@ -93,6 +94,7 @@ class _UpDownState extends State<UpDown> {
               style: TextStyle(
                 fontSize: 24,
                 color: Colors.white,
+                  fontFamily: 'Recipekorea'
               ),
             ),
             color: Color.fromRGBO(104, 178, 228,1),
@@ -139,6 +141,7 @@ class _UpDownState extends State<UpDown> {
                           ? Color.fromRGBO(77, 158, 79,1)
                           : _up ? Color.fromRGBO(104, 178, 228,1) : Colors.redAccent,
                   fontWeight: FontWeight.bold,
+                    fontFamily: 'Recipekorea'
                 ),
               ),
             ),
@@ -167,6 +170,7 @@ class _UpDownState extends State<UpDown> {
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.white,
+                      fontFamily: 'Recipekorea'
                   ),
                 ),
                 onPressed: () {

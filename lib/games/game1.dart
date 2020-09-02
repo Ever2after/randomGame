@@ -62,6 +62,7 @@ class _Game1State extends State<Game1> {
                   style: TextStyle(
                     fontWeight : FontWeight.bold,
                     fontSize : 28,
+                    fontFamily: 'Recipekorea',
                     color: !_gameStarted ? Colors.black
                      : (_isPassed ? Color.fromRGBO(77, 158, 79,1) : Colors.deepOrangeAccent),
                   ),
@@ -76,7 +77,7 @@ class _Game1State extends State<Game1> {
                     _isRecording
                         ? "Current Decibel : $_decibel dB\nMax Decibel: $_maxDecibel dB"
                         : "최고기록 : $_maxDecibel dB",
-                    style: TextStyle(fontWeight : FontWeight.bold, fontSize: 25, color: Color.fromRGBO(104, 178, 228,1)),
+                    style: TextStyle(fontWeight : FontWeight.bold, fontSize: 25, color: Color.fromRGBO(104, 178, 228,1), fontFamily: 'Recipekorea'),
                     textAlign: TextAlign.center,
                 ),
                 margin: EdgeInsets.only(top: 20),
@@ -100,7 +101,7 @@ class _Game1State extends State<Game1> {
                     width: 200,
                     child: Text(
                       _isRecording ? '측정 종료' : '측정 시작!',
-                      style: TextStyle(fontSize: 20,color : Colors.white),
+                      style: TextStyle(fontSize: 20, color : Colors.white, fontFamily: 'Recipekorea'),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -115,7 +116,7 @@ class _Game1State extends State<Game1> {
                     width: 200,
                     child: Text(
                       '게임 초기화',
-                      style: TextStyle(fontSize: 20, color: Colors.white,),
+                      style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Recipekorea'),
                       textAlign: TextAlign.center,
                     ),
                   ),
