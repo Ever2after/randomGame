@@ -30,7 +30,7 @@ class JuruMarbleCard extends StatelessWidget {
                   child: Align(
                       child: Text(
                     content,
-                    style: TextStyle(color: Colors.white, fontSize: 40),
+                    style: TextStyle(color: Colors.black, fontSize: 40, fontFamily: 'Recipekorea'),
                   )),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(30),

@@ -67,7 +67,7 @@ flutter:
      - images/alcohol_bottle2.png
      - images/alcohol_bottle3.png
      - images/alcohol_bottle4.png
-     - images/jurumarble_chart.jpg
+     - images/jurumarble_chart.png
      - images/roullete.png
      - images/roullete_pointer.png
      - images/roullete_background.png
@@ -84,10 +84,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+      - family: Recipekorea
+        fonts:
+        - asset: fonts/Recipekorea.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
