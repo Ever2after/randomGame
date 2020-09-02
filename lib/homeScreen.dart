@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         alignment: Alignment.center,
                         height : 35,
                         child: Text('게임 목록', style: TextStyle(
-                          fontSize: 18, color  : Colors.white,
+                          fontSize: 16, color  : Colors.white, fontFamily: 'Recipekorea'
                         ),),
                         decoration: BoxDecoration(
                             color: Colors.amber,
@@ -94,8 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: (){
         Navigator.pushNamed(context, _gameInfo[3]);
       },
-      title: Text(_gameInfo[1]),
-      subtitle: Text(_gameInfo[2]),
+      title: Text(_gameInfo[1], style: TextStyle(fontFamily: 'Recipekorea'),),
+      subtitle: Text(_gameInfo[2], style: TextStyle(fontFamily: 'Recipekorea'),),
       leading: CircleAvatar(
           backgroundColor: Colors.white,
           backgroundImage : AssetImage(
@@ -113,7 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
         child: Text('랜덤으로 게임 스타트!', style: TextStyle(
             color: Colors.white,
-            fontSize: 18
+            fontSize: 18,
+            fontFamily: 'Recipekorea'
         ),),
       ),
       onPressed: (){

@@ -32,7 +32,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                        AnimatedBuilder(
                           animation: _controller,
                           builder: (BuildContext context, Widget _widget) {
-                            if(_controller.value>0.9) Navigator.pushNamed(context, '/home');
                             return Container(
                               alignment: Alignment.center,
                               padding: EdgeInsets.only(top : height*0.35-_controller.value*200),

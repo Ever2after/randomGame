@@ -47,6 +47,9 @@ class MyApp extends StatelessWidget {
         routes[4] : (context) => JuruMarble(),
         routes[5] : (context) => RandomTargetGame(),
       },
+      theme: ThemeData(
+        fontFamily : 'Recipekorea'
+      ),
     );
   }
 }
