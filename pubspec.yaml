@@ -60,6 +60,13 @@ flutter:
      - images/logo3.png
      - images/emptylogo.png
      - images/whitearea.png
+     - images/logo/1.png
+     - images/logo/2.png
+     - images/logo/3.png
+     - images/logo/4.png
+     - images/logo/5.png
+     - images/logo/6.png
+     - images/logo/7.png
      - images/soju.png
      - images/beer.png
      - images/water.png
