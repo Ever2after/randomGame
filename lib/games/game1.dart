@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:noise_meter/noise_meter.dart';
 import 'dart:async';
@@ -25,6 +26,7 @@ class _Game1State extends State<Game1> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return MaterialApp(

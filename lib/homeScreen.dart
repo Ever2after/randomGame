@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bordered_text/bordered_text.dart';
+import 'package:flutter/services.dart';
 import 'main.dart';
 
 import 'dart:math';
@@ -12,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return SafeArea(
