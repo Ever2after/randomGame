@@ -31,6 +31,7 @@ dependencies:
   progress_dialog:
   wave:
   wave_progress_widget:
+  audioplayers:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
@@ -56,8 +57,6 @@ flutter:
   assets:
      - images/title.png
      - images/logo.png
-     - images/logo2.png
-     - images/logo3.png
      - images/emptylogo.png
      - images/whitearea.png
      - images/logo/1.png
@@ -79,6 +78,11 @@ flutter:
      - images/roullete_pointer.png
      - images/roullete_background.png
      - images/mini_soju.png
+     - images/frying_pan0.png
+     - images/FryingPan0.png
+     - images/FryingPan1.png
+     - images/FryingPan2.png
+     - images/FryingPan3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

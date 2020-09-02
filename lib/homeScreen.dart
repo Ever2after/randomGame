@@ -64,6 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             _gameTile(gameInfo[3]),
                             _gameTile(gameInfo[4]),
                             _gameTile(gameInfo[5]),
+                            _gameTile(gameInfo[6])
                           ],
                         ),
                       )

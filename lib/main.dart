@@ -7,6 +7,7 @@ import 'package:random_game/games/random_target_game.dart';
 import 'package:random_game/games/up&down.dart';
 import 'package:random_game/games/bottle_spinner.dart';
 import 'package:random_game/games/jurumarble/jurumarble.dart';
+import 'package:random_game/games/frying_pan_screen.dart';
 
 
 void main() {
@@ -20,6 +21,7 @@ final List<String> routes = [   //모든 라우팅 정보는 이곳에
   '/bottleSpinner',
   JuruMarble.id,
   RandomTargetGame.id,
+  FryingPanScreen.id,
 ];
 
 final List<List<String>> gameInfo = [  //게임 정보 [게임 로고, 이름, 설명, 라우팅 정보]
@@ -29,6 +31,7 @@ final List<List<String>> gameInfo = [  //게임 정보 [게임 로고, 이름, �
   ['images/logo/1.png', '소주병 돌리기', '누군가 한 명 고르고 싶을 때', routes[3]],
   ['images/logo/5.png', '주루마블', '', routes[4]],
   ['images/logo/2.png', '랜덤터치', '', routes[5]],
+  ['images/logo/7.png', '후라이펜돌이', '', routes[6]],
 ];
 
 class MyApp extends StatelessWidget {
@@ -46,6 +49,7 @@ class MyApp extends StatelessWidget {
         routes[3] : (context) => BottleSpinner(),
         routes[4] : (context) => JuruMarble(),
         routes[5] : (context) => RandomTargetGame(),
+        routes[6] : (context) => FryingPanScreen()
       },
       theme: ThemeData(
         fontFamily : 'Recipekorea'
