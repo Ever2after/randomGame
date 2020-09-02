@@ -15,6 +15,29 @@ List<Color> myColors = [
   Colors.orangeAccent
 ];
 
+List<String> cardContents = [
+  "",
+  "한번 쉬기",
+  "랜덤게임",
+  "눈치게임 시작!",
+  "한번 쉬기",
+  "양 옆 마시기",
+  "다같이 원샷",
+  "한번 쉬기",
+  "침묵의 공공칠빵",
+  "팅팅~탱탱~ 후라이팬 놀이",
+  "한번 쉬기",
+  "1명 지목 너 마셔!",
+  "배스킨라빈스 31",
+  "한번 쉬기",
+  "본인 제외 다같이 원샷!",
+  "물한잔 원샷~",
+  "한번 쉬기",
+  "바니바니",
+  "왼쪽과 러브샷~!",
+  "한번 쉬기"
+];
+
 class JuruMarble extends StatefulWidget {
   static const String id = 'jurumarble'; //먼지 모르겠지만 따라하자
   @override
@@ -92,7 +115,7 @@ class _JuruMarbleState extends State<JuruMarble> {
           Container(
             decoration: BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage('images/jurumarble_chart.jpg'), //주루마블판이미지
+              image: AssetImage('images/jurumarble_chart.png'), //주루마블판이미지
               fit: BoxFit.fill,
             )),
           ),
@@ -170,13 +193,14 @@ class _JuruMarbleState extends State<JuruMarble> {
         _move(width, height, k - 1); //재귀함수로 한칸씩 움직임
       else {
         //다 움직였을때 : 다음플레이어로 바꾸고 벌칙내용 알려주기
-        _curPlayer = _curPlayer < _playerNum - 1 ? _curPlayer + 1 : 0;
+        
         await Navigator.of(context).push(PageRouteBuilder(
             opaque: false,
             pageBuilder: (context, __, ___) => JuruMarbleCard(
-                  content: "벌칙 내용",
+                  content: cardContents[_game.getPlayerPos(_curPlayer)],
                   endgame: false,
                 ))); //
+        _curPlayer = _curPlayer < _playerNum - 1 ? _curPlayer + 1 : 0;
         _moveToRoulletePage(width, height);
       }
     });
