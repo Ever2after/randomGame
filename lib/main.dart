@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '랜덤 술게임',
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
         '/' : (context) => WelcomeScreen(),
         '/home' : (context) => HomeScreen(),

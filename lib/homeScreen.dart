@@ -21,23 +21,16 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: <Widget>[
               Container(
-                child: BorderedText(
-                  strokeWidth: 12,
-                  strokeColor: Color.fromRGBO(104, 178, 228,1),
-                  child: Text(
-                    '더 게임 오브 알코올',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                    ),
-                  ),
+                height : height*0.13,
+                margin: EdgeInsets.only(top: height * 0.05),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image : AssetImage('images/title.png')
+                    )
                 ),
-                width: width,
-                height: height * 0.2,
-                alignment: Alignment.center,
               ),
               Container(
-                  margin: EdgeInsets.fromLTRB(30,0,30,30),
+                  margin: EdgeInsets.fromLTRB(30,30,30,30),
                   padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
                   height : height*0.55,
                   decoration: BoxDecoration(
@@ -117,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
       color: Color.fromRGBO(77, 158, 79,1),
       child: Container(
         padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
-        child: Text('게임 랜덤 스타트!', style: TextStyle(
+        child: Text('랜덤으로 게임 스타트!', style: TextStyle(
             color: Colors.white,
             fontSize: 18
         ),),
