@@ -25,8 +25,11 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> with SingleTickerProviderStateMixin {
-  // AnimationController _controller;
-  // int _duration = 5; // 회전지속시간
+  AnimationController _controller;
+  double _rotateSpeed = 0;
+  var _speedarr = [
+    0.0,20.0,40.0,60.0,   // 후라이팬 회전 속도
+  ];
   String _imgsrc = 'images/frying_pan0.png';
   var _imgarr = [
     'images/frying_pan0.png',
@@ -34,19 +37,20 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
     'images/frying_pan2.png',
     'images/frying_pan3.png'
   ];
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _controller = new AnimationController(
-  //     vsync: this,
-  //     duration: new Duration(seconds: _duration),
-  //   );
-  //   _controller.repeat();
-  // }
+   @override
+   void initState() {
+     super.initState();
+     _controller = new AnimationController(
+       vsync: this,
+       duration: new Duration(seconds: 1000),  //1000초 주기, 중간에 끊기면 안되므로
+     );
+     _controller.repeat();
+   }
 
   void _speedSelector(int level) {
     setState(() {
       _imgsrc = _imgarr[level];
+      _rotateSpeed = _speedarr[level];  // 속도 레벨도 같이 변경
     });
   }
 
@@ -74,27 +78,23 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
                 SizedBox(
                   height: 30,
                 ),
-                // Align(
-                //   alignment: Alignment.center,
-                //   child: AnimatedBuilder(
-                //     animation: _controller,
-                //     child: Container(
-                //       child: Image.asset(imgsrc),
-                //     ),
-                //     builder: (BuildContext context, Widget _widget) {
-                //       return new Transform.rotate(
-                //         angle: 0,
-                //         child: _widget,
-                //       );
-                //     },
-                //   ),
-                // ),
-                SizedBox(
-                  // child: FryingPan(),
-                  height: 200,
-                  width: 200,
-                  child: Image.asset(_imgsrc),
+
+                AnimatedBuilder(  // 회전하는 후라이팬
+                  animation: _controller,
+                  child: SizedBox(   //회전시킬 child를 여기에 둠
+                    height: 200,
+                    width: 200,
+                    child: Image.asset(_imgsrc),
+                  ),
+                  builder: (BuildContext context, Widget _widget) {
+                    return new Transform.rotate(
+                      origin: Offset(0,-30),  //회전중심
+                      angle: _controller.value*_rotateSpeed,  //회전각도, _controller.value는 시간에 비례해 증가하는 값
+                      child: _widget,
+                    );
+                  },
                 ),
+
                 SizedBox(
                   height: 30,
                 ),
@@ -199,6 +199,7 @@ class _MainState extends State<Main> with SingleTickerProviderStateMixin {
                     onPressed: () {
                       setState(() {
                         _imgsrc = _imgarr[0];
+                        _rotateSpeed = _speedarr[0];
                         //오디오를 중지하는 코드 넣어주기
                       });
                     },

@@ -80,9 +80,9 @@ flutter:
      - images/mini_soju.png
      - images/frying_pan0.png
      - images/FryingPan0.png
-     - images/FryingPan1.png
-     - images/FryingPan2.png
-     - images/FryingPan3.png
+     - images/frying_pan1.png
+     - images/frying_pan2.png
+     - images/frying_pan3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
